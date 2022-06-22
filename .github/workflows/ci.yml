@@ -21,6 +21,15 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Cache jenkins
+        uses: actions/cache@v2
+        with:
+          path: |
+            /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject
+          key: ${{ runner.os }}-jenkins_backup-${{ hashFiles('**/jenkins_backup.tar') }}
+          restore-keys: |
+            ${{ runner.os }}-jenkins_backup-
+
       - name: Сache maven
         uses: actions/cache@v2
         with:
@@ -28,10 +37,11 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      - name: Prepare Jenkins data
+      - name: Load Jenkins data
         run: |
-          cat /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_data/jenkins_backup0* > /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar
-          md5sum /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar
+          if [ ! -f /home/runner/work/JenkinsQA_04/JenkinsQA_04/jenkins_backup.tar ]; then
+              curl http://buildemojis.com/jenkins_backup.tar -o /home/runner/work/JenkinsQA_04/JenkinsQA_04/jenkins_backup.tar
+          fi
 
       - name: Extract Jenkins data and set permission
         run: |
@@ -42,13 +52,13 @@ jobs:
         run: echo ${{ secrets.DOCKER_PAS }} | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
 
       - name: Docker start
-        run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup/var/jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+        run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v /home/runner/work/JenkinsQA_04/GoldenJenkinsProject/GoldenJenkinsProject/var/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
 
       - name: Wait for the Jenkins
         run: ./.github/wait-for-jenkins.sh
 
       - name: Maven test
-        id: test
         run: mvn test
         env:
           CHROME_OPTIONS: --disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless;--window-size=1920,1080
