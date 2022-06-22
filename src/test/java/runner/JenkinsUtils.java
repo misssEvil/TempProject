@@ -13,7 +13,7 @@ public final class JenkinsUtils {
    private static final String PASSWORD = PREFIX + "admin.password";
 
     static void getBaseUrl(WebDriver driver){
-        driver.get("http://localhost:".concat(getProperties().getProperty(PORT)) );
+        driver.get("http://localhost:8080" );
     }
 
     static void login(WebDriver driver) {
