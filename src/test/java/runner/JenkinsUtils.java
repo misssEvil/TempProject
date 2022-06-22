@@ -3,8 +3,8 @@ package runner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static runner.BaseUtils.PREFIX;
-import static runner.BaseUtils.getProperties;
+import static runner.JBaseUtils.PREFIX;
+import static runner.JBaseUtils.getProperties;
 
 public final class JenkinsUtils {
 

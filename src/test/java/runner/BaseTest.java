@@ -9,36 +9,16 @@ public abstract class BaseTest {
     private WebDriver driver;
 
     @BeforeMethod
-    protected void BeforeMethod() {
-        startDriver();
-        login();
+    protected void beforeMethod() {
+        driver = BaseUtils.createDriver();
     }
 
     @AfterMethod
-    protected void closeUp() {
-        logout();
+    protected void afterMethod() {
         driver.quit();
     }
 
     protected WebDriver getDriver() {
         return driver;
-    }
-
-    protected void startDriver(){
-        driver = BaseUtils.createDriver();
-    }
-
-    protected void goHome(){
-        JenkinsUtils.getBaseUrl(getDriver());
-    }
-
-
-
-    protected void login(){
-        JenkinsUtils.login(driver);
-    }
-
-    protected void logout(){
-        JenkinsUtils.logout(driver);
     }
 }

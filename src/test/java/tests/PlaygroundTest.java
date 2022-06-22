@@ -5,9 +5,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import runner.BaseTest;
+import runner.JBaseTest;
 
-public class PlaygroundTest extends BaseTest {
+public class PlaygroundTest extends JBaseTest {
 
     @Test
     public void randomTest() {
