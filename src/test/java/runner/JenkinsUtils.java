@@ -12,8 +12,6 @@ public final class JenkinsUtils {
    private static final String USER = PREFIX + "admin.username";
    private static final String PASSWORD = PREFIX + "admin.password";
 
-
-
     static void getBaseUrl(WebDriver driver){
         driver.get(String.format("http://localhost:%s", getProperties().getProperty(PORT)));
     }
@@ -24,18 +22,10 @@ public final class JenkinsUtils {
         driver.findElement(By.id("j_username")).sendKeys(getProperties().getProperty(USER));
         driver.findElement(By.name("j_password")).sendKeys(getProperties().getProperty(PASSWORD));
         driver.findElement(By.name("Submit")).click();
-
     }
 
     static void logout(WebDriver driver){
         getBaseUrl(driver);
-
         driver.findElement(By.xpath("//a[@href='/logout']")).click();
-        getBaseUrl(driver);
-
-
     }
-
-
-
 }
