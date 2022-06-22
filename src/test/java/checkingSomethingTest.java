@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 import runner.BaseTest;
 
 public class checkingSomethingTest extends BaseTest {
-    @Test
+@Ignore    
+@Test
     public void lastMenuElement() {
         getDriver().get("http://www.99-bottles-of-beer.net/");
         WebElement submitLang2 = getDriver().findElement(By.linkText("Submit new Language"));
