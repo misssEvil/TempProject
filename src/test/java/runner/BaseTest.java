@@ -9,9 +9,8 @@ public abstract class BaseTest {
     private WebDriver driver;
 
     @BeforeMethod
-    protected void setUp() {
-        driver = BaseUtils.createDriver();
-        getJenkins();
+    protected void BeforeMethod() {
+        startDriver();
         login();
     }
 
@@ -25,13 +24,15 @@ public abstract class BaseTest {
         return driver;
     }
 
+    protected void startDriver(){
+        driver = BaseUtils.createDriver();
+    }
+
     protected void goHome(){
         JenkinsUtils.getBaseUrl(getDriver());
     }
 
-    protected void getJenkins(){
-        JenkinsUtils.getBaseUrl(driver);
-    }
+
 
     protected void login(){
         JenkinsUtils.login(driver);
