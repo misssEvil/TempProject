@@ -14,9 +14,9 @@ public final class BaseUtils {
 
     private static final String ENV_CHROME_OPTIONS = "CHROME_OPTIONS";
 
-    static final String PREFIX_PROP = "default.";
+    static final String PREFIX = "default.";
 
-    private static final String PROP_CHROME_OPTIONS = PREFIX_PROP + ENV_CHROME_OPTIONS.toLowerCase();
+    private static final String PR_CHROME_OPTIONS = PREFIX + ENV_CHROME_OPTIONS.toLowerCase();
 
     private static Properties properties;
 
@@ -24,7 +24,7 @@ public final class BaseUtils {
         if (properties == null) {
             properties = new Properties();
             if (isServerRun()) {
-                properties.setProperty(PROP_CHROME_OPTIONS, System.getenv(ENV_CHROME_OPTIONS));
+                properties.setProperty(PR_CHROME_OPTIONS, System.getenv(ENV_CHROME_OPTIONS));
             } else {
                 try {
                     InputStream inputStream = BaseUtils.class.getClassLoader().getResourceAsStream("local.properties");
@@ -47,7 +47,7 @@ public final class BaseUtils {
         initProperties();
 
         chromeOptions = new ChromeOptions();
-        String options = properties.getProperty(PROP_CHROME_OPTIONS);
+        String options = properties.getProperty(PR_CHROME_OPTIONS);
         if (options != null) {
             for (String argument : options.split(";")) {
                 chromeOptions.addArguments(argument);
