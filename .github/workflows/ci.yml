@@ -28,13 +28,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      - name: Get list of changed files
-        run: echo "LIST_OF_CHANGED_FILES=$(git diff --name-only origin/$GITHUB_HEAD_REF $(git merge-base origin/$GITHUB_HEAD_REF origin/main) | tr '\n' ';')" >> $GITHUB_ENV
-
       - name: Prepare Jenkins data
         run: |
-          cat /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_data/jenkins_backup0* > /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar
-          md5sum /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar
+          cat /home/runner/work/GoldenJenkinsProject/jenkins_data/jenkins_backup0* > /home/runner/work/GoldenJenkinsProject/jenkins_backup.tar
+          md5sum /home/runner/work/GoldenJenkinsProject/jenkins_backup.tar
 
       - name: Extract Jenkins data and set permission
         run: |
@@ -45,7 +42,7 @@ jobs:
         run: echo ${{ secrets.DOCKER_PAS }} | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
 
       - name: Docker start
-        run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup/var/jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+        run: docker run --rm --detach -p 8080:8080 -p 50000:50000 -v /home/runner/work/GoldenJenkinsProject/jenkins_backup/var/jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
 
       - name: Wait for the Jenkins
         run: ./.github/wait-for-jenkins.sh
