@@ -1,5 +1,4 @@
 *.iml
-*.xml
 .idea
 *.class
 target/
@@ -8,3 +7,4 @@ local.properties
 debug.log
 .vscode
 .settings
+*.xml
