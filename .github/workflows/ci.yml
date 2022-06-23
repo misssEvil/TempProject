@@ -39,8 +39,8 @@ jobs:
 
       - name: Load Jenkins Data
         run: |
-            if [ ! -f /home/runner/work/JenkinsQA_04/JenkinsQA_04/jenkins_backup.tar ]; then
-              curl http://buildemojis.com/jenkins_backup.tar -o /home/runner/work/JenkinsQA_04/JenkinsQA_04/jenkins_backup.tar
+            if [ ! -f /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar ]; then
+              curl http://buildemojis.com/jenkins_backup.tar -o /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar
             fi
 
       - name: Extract Jenkins data and set permission
