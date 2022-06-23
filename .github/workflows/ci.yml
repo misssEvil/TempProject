@@ -37,10 +37,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      - name: Get list of changed files
-        run: echo "LIST_OF_CHANGED_FILES=$(git diff --name-only origin/$GITHUB_HEAD_REF $(git merge-base origin/$GITHUB_HEAD_REF origin/main) | tr '\n' ';')" >> $GITHUB_ENV
-     
-     - name: Load Jenkins data
+      - name:
+          run: echo "LIST_OF_CHANGED_FILES=$(git diff --name-only origin/$GITHUB_HEAD_REF $(git merge-base origin/$GITHUB_HEAD_REF origin/main) | tr '\n' ';')" >> $GITHUB_ENV
+
+      - name: Load Jenkins data
         run: |
           if [ ! -f /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar ]; then
               curl http://buildemojis.com/jenkins_backup.tar -o /home/runner/work/GoldenJenkinsProject/GoldenJenkinsProject/jenkins_backup.tar
