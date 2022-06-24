@@ -10,6 +10,8 @@ public class TryTest extends BaseTest {
     @Test
     public void randomTest() {
 
+        Assert.assertTrue(getDriver().findElement(By.cssSelector("div#side-panel")).isEnabled());
+
         WebElement searchBox = getDriver().findElement(By.id("search-box"));
         searchBox.sendKeys("0000");
         searchBox.sendKeys(Keys.ENTER);
