@@ -56,6 +56,9 @@ jobs:
 
       - name: Wait for the Jenkins
         run: ./.github/wait-for-jenkins.sh
+      
+      - name: get admin password
+        run: docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
       - name: Maven test
         run: mvn test
