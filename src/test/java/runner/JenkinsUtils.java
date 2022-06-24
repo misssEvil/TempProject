@@ -15,7 +15,8 @@ public final class JenkinsUtils {
 
 
     static void getBaseUrl(WebDriver driver){
-        driver.get(String.format("http://localhost:%s", getProperties().getProperty(PORT)));
+        //driver.get(String.format("http://localhost:%s", getProperties().getProperty(PORT)));
+        driver.get("http://localhost:8080");
     }
 
     static void login(WebDriver driver) {
