@@ -46,7 +46,8 @@ jobs:
           
     - name: check on failures
       run: |
-        if [ steps.test.outcome != "success"] then exit 0
+        if [ steps.test.outcome != 'success' ]; then 
+            exit 1
         fi 
         
     
