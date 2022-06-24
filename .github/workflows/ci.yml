@@ -44,7 +44,7 @@ jobs:
           CI_RUN: true
           continue-on-error: true
     
-    - name: check on failures
-      if: steps.test.outcome!='success'
+    - name: Check on failures
+      if: steps.test.outcome != 'success'
       run: exit 1
        
