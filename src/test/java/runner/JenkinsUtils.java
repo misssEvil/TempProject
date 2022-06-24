@@ -15,22 +15,15 @@ public final class JenkinsUtils {
 
 
     static void getBaseUrl(WebDriver driver){
-        //driver.get(String.format("http://localhost:%s", getProperties().getProperty(PORT)));
-        driver.get("http://localhost:8080/login?from=%2F");
+        driver.get(String.format("http://localhost:%s", getProperties().getProperty(PORT)));
     }
 
     static void login(WebDriver driver) {
         getBaseUrl(driver);
 
-        /*driver.findElement(By.id("j_username")).sendKeys(getProperties().getProperty(USER));
+        driver.findElement(By.id("j_username")).sendKeys(getProperties().getProperty(USER));
         driver.findElement(By.name("j_password")).sendKeys(getProperties().getProperty(PASSWORD));
-        driver.findElement(By.name("Submit")).click();*/
-
-         driver.findElement(By.id("j_username")).sendKeys("admin");
-        driver.findElement(By.name("j_password")).sendKeys("af70de925be74d309d3f86e4350df842");
         driver.findElement(By.name("Submit")).click();
-
-
 
     }
 
