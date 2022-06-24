@@ -42,3 +42,9 @@ jobs:
           CHROME_OPTIONS: --disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless;--window-size=1920,1080
           APP_OPTIONS: port=8080;admin.username=${{ secrets.ADMIN_USER }};admin.password=${{ secrets.ADMIN_PAS }}
           CI_RUN: true
+          continue-on-error: true 
+          
+    - name: check on failures
+        if steps.test.outcome != "success"
+        run: exit 1
+    
