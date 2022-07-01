@@ -21,8 +21,8 @@ public final class JenkinsUtils {
     static void login(WebDriver driver) {
         getBaseUrl(driver);
 
-        driver.findElement(By.id("j_username")).sendKeys(getProperties().getProperty("test"));
-        driver.findElement(By.name("j_password")).sendKeys(getProperties().getProperty("test"));
+        driver.findElement(By.id("j_username")).sendKeys("test");
+        driver.findElement(By.name("j_password")).sendKeys("test");
         driver.findElement(By.name("Submit")).click();
 
     }
