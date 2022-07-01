@@ -15,7 +15,7 @@ public final class JenkinsUtils {
 
 
     static void getBaseUrl(WebDriver driver){
-        driver.get(String.format("http://localhost:%s", getProperties().getProperty(PORT)));
+        driver.get("http://localhost:8080");
     }
 
     static void login(WebDriver driver) {
@@ -24,8 +24,8 @@ public final class JenkinsUtils {
 
         if (driver.findElement(By.xpath("//div/h1")).getText().equals("Welcome to Jenkins!"))
         {
-            driver.findElement(By.id("j_username")).sendKeys(getProperties().getProperty(USER));
-            driver.findElement(By.name("j_password")).sendKeys(getProperties().getProperty(PASSWORD));
+            driver.findElement(By.id("j_username")).sendKeys("test");
+            driver.findElement(By.name("j_password")).sendKeys("test");
             driver.findElement(By.name("Submit")).click();
         }
 
